@@ -1,0 +1,32 @@
+class Solution {
+    public int findKthLargest(int[] nums, int k) {
+        
+        int res = 0;
+        
+        PriorityQueue<Integer> pq = new PriorityQueue<>();
+        
+        int n = nums.length;
+        for(int i = 0; i < n; i++)
+        {
+            if(pq.size() < k)
+            {
+                pq.offer(nums[i]);
+            }
+            else
+            {
+                if(pq.peek() < nums[i])
+                {
+                    pq.poll();
+                    pq.offer(nums[i]);
+                }
+            }
+            
+        }
+        
+        return pq.peek();
+        
+        
+    }
+}
+
+//https://leetcode.com/problems/kth-largest-element-in-an-array/discuss/1623677/Java-Solution-oror-Priority-Queue-oror-O(nlogn)
